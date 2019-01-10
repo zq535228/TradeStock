@@ -1,0 +1,6 @@
+D:\股票自动交易\org.jiechan.user\obj\x86\Debug\org.jiechan.user.csproj.GenerateResource.Cache
+D:\build\org.jiechan.encrypt.dll
+D:\build\org.jiechan.encrypt.pdb
+D:\股票自动交易\org.jiechan.user\obj\x86\Debug\org.jiechan.encrypt.Properties.Resources.resources
+D:\股票自动交易\org.jiechan.user\obj\x86\Debug\org.jiechan.encrypt.dll
+D:\股票自动交易\org.jiechan.user\obj\x86\Debug\org.jiechan.encrypt.pdb

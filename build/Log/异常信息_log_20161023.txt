@@ -1,0 +1,9 @@
+-------------------[System Time]:   2016/10/23 10:53:38---------------------------
+异常信息：Unexpected EOF
+ICSharpCode.SharpZipLib
+   在 ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream.Fill()
+   在 ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   在 ICSharpCode.SharpZipLib.Zip.ZipInputStream.BodyRead(Byte[] buffer, Int32 offset, Int32 count)
+   在 ICSharpCode.SharpZipLib.Zip.ZipInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   在 org.jiechan.service.ZipHelper.UnZip(String file, String dir, Boolean showinfo) 位置 D:\股票自动交易\org.jiechan.service\ZipHelper.cs:行号 71
+

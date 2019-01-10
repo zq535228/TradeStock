@@ -1,0 +1,7 @@
+F:\x4\org.renzhe.plat\org.renzhe.plat.stp\bin\Release\SmartThreadPool.dll
+F:\x4\org.renzhe.plat\org.renzhe.plat.stp\bin\Release\SmartThreadPool.pdb
+F:\x4\build\SmartThreadPool.dll
+F:\x4\build\SmartThreadPool.pdb
+F:\x4\org.renzhe.plat\org.renzhe.plat.stp\obj\Release\SmartThreadPool.dll
+F:\x4\org.renzhe.plat\org.renzhe.plat.stp\obj\Release\SmartThreadPool.pdb
+F:\x4\org.renzhe.plat\org.renzhe.plat.stp\obj\Release\org.renzhe.plat.stp.csprojResolveAssemblyReference.cache

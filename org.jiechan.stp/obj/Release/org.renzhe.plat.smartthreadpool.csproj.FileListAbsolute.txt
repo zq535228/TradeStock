@@ -1,0 +1,4 @@
+F:\x4\org.renzhe.plat\org.renzhe.plat.smartthreadpool\bin\Release\SmartThreadPool.dll
+F:\x4\org.renzhe.plat\org.renzhe.plat.smartthreadpool\bin\Release\SmartThreadPool.pdb
+F:\x4\org.renzhe.plat\org.renzhe.plat.smartthreadpool\obj\Release\SmartThreadPool.dll
+F:\x4\org.renzhe.plat\org.renzhe.plat.smartthreadpool\obj\Release\SmartThreadPool.pdb

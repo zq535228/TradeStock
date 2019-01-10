@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="gb2312"?>
+<AutoUpdater>
+  <description>忍者X4更新记录
+  	2014年12月18日，修复发布数量保存失败，广告页面修改等重要问题。
+  	2014年12月17日，增加了一个CT文章导出TXT的工具；修复若干问题。
+  	2014年12月17日，【X4服务器控制中心】大面积的更新；x4-dart.zip也更新啦快去下载升级吧。
+  	2014年12月15日，增强了抓取模块制作工具，修复若干问题。
+	2014年12月13日，增加了一个任务打开网站的菜单项，修复若干问题。
+  	2014年12月11日，重写了关键词工具，修复了任务文章分组的问题。
+	2014年12月8日，修正了采集入库的HASH值错误问题，造成的重复采集相同url文章。
+  	2014年12月7日，增加了2款插件，metinfo、typecho发布插件。
+  	2014年12月5日，重写了登录验证模块。
+  	2014年12月4日，更新了验证，完美结合论坛，增加论坛RMB字段。
+  	2014年12月3日，推出日付版本，可以论坛充值或淘宝购买充值卡。
+  	2014年12月1日，优化了文章入库，可以多任务共享文章库。
+	2014年11月23日，新增wp3.52，wp3.0，5ucms等插件。欢迎试用。
+  	2014年11月19日，继续优化，测试版本不建议正式建站。
+	2014年11月17日，转换了第一个插件，更改了数据库，测试版本不建议正式建站。
+  	2014年11月3日，修复了远程桌面连接的问题，修复若干bug。
+  	2014年10月31日，测试发布。
+  	2014年10月27日，基本可以使用。
+    2014年10月11日，忍者X4发布beta版本，仅供测试。</description>
+  <Updater>
+    <Url>http://update.renzhe.org/pub_x4/</Url>
+  </Updater>
+  <Application>
+    <EntryPoint>org.renzhe.plat.main.exe</EntryPoint>
+  </Application>
+  <Files>
+    <File Ver="4.0.2014121809" Name="org.renzhe.plat.main.exe" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.plugin.aspcms254.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.plugin.dede57.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.plugin.destoon50.dll" />
+    <File Ver="4.0.2014120803" Name="org.renzhe.plugin.metinfo517.dll" />
+    <File Ver="4.0.2014120803" Name="org.renzhe.plugin.typecho08.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.plugin.wordpress352.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.plugin.wordpress40.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.plugin.zbp16.dll" />
+    <File Ver="4.0.2014121809" Name="org.renzhe.plugin._5ucms12.dll" />
+    <File Ver="4.0.2014121809" Name="org.renzhe.template.rz001.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz002.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz003.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz004.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz005.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz006.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz007.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz008.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz009.dll" />
+    <File Ver="4.0.2014121802" Name="org.renzhe.template.rz010.dll" />
+    <File Ver="4.0.2014121809" Name="org.renzhe.tools.ct2txt.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.tools.dnspod.dll" />
+    <File Ver="4.0.2014121503" Name="org.renzhe.tools.gather.dll" />
+    <File Ver="4.0.2014121809" Name="org.renzhe.tools.keywords.dll" />
+    <File Ver="4.0.2014120302" Name="org.renzhe.tools._51dns.dll" />
+  </Files>
+</AutoUpdater>

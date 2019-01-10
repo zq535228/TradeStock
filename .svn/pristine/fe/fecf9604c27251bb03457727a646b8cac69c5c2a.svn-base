@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{177CDC86-FC48-4F91-9DF6-A76A54E6C7DA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>org.jiechan.main</RootNamespace>
+    <AssemblyName>org.jiechan.main</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OVER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>TRACE;OVER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>3232.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.3.2.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\org.jiechan.dlls\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SpeechLib">
+      <HintPath>..\org.jiechan.dlls\Interop.SpeechLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="STSdb4">
+      <HintPath>..\org.jiechan.dlls\STSdb4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="X_Docking, Version=2.5.0.3441, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\org.jiechan.dlls\X_Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="core\comcore.cs" />
+    <Compile Include="core\comm.cs" />
+    <Compile Include="core\sinahq.cs" />
+    <Compile Include="core\spvoice.cs" />
+    <Compile Include="core\taskmanage.cs" />
+    <Compile Include="core\test.cs" />
+    <Compile Include="j_base.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_base.Designer.cs">
+      <DependentUpon>j_base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_main.Designer.cs">
+      <DependentUpon>j_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_mystock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_mystock.Designer.cs">
+      <DependentUpon>j_mystock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_mystockadd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_mystockadd.Designer.cs">
+      <DependentUpon>j_mystockadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_set.Designer.cs">
+      <DependentUpon>j_set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_jiechan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_jiechan.Designer.cs">
+      <DependentUpon>j_jiechan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_task.Designer.cs">
+      <DependentUpon>j_task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_taskadd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_taskadd.Designer.cs">
+      <DependentUpon>j_taskadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_taskinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_taskinfo.Designer.cs">
+      <DependentUpon>j_taskinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="j_taskover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_taskover.Designer.cs">
+      <DependentUpon>j_taskover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="models\taskmodel.cs" />
+    <Compile Include="models\taskopt.cs" />
+    <Compile Include="models\holdingstockopt.cs" />
+    <Compile Include="models\holdingstockmodel.cs" />
+    <Compile Include="models\stockmodel.cs" />
+    <Compile Include="models\stockopt.cs" />
+    <Compile Include="models\accountmodel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>res.resx</DependentUpon>
+    </Compile>
+    <Compile Include="j_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="j_login.designer.cs">
+      <DependentUpon>j_login.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="j_base.resx">
+      <DependentUpon>j_base.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_main.resx">
+      <DependentUpon>j_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_mystock.resx">
+      <DependentUpon>j_mystock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_mystockadd.resx">
+      <DependentUpon>j_mystockadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_set.resx">
+      <DependentUpon>j_set.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_jiechan.resx">
+      <DependentUpon>j_jiechan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_task.resx">
+      <DependentUpon>j_task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_taskadd.resx">
+      <DependentUpon>j_taskadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_taskinfo.resx">
+      <DependentUpon>j_taskinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_taskover.resx">
+      <DependentUpon>j_taskover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="j_login.resx">
+      <DependentUpon>j_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\org.jiechan.service\org.jiechan.service.csproj">
+      <Project>{446989F0-9599-4714-8202-1827C7AE076A}</Project>
+      <Name>org.jiechan.service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\org.jiechan.stp\SmartThreadPool.csproj">
+      <Project>{74D4C33F-7CC8-4B2A-A7DF-D8B6E63B6EBD}</Project>
+      <Name>SmartThreadPool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\org.jiechan.user\org.jiechan.user.csproj">
+      <Project>{2FDD18AB-0E01-4E12-A709-AF22CDFC9D47}</Project>
+      <Name>org.jiechan.user</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UpdateList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pic_Login.Image.png" />
+    <Content Include="3232.ico" />
+    <Content Include="core\debug.txt" />
+    <Content Include="项目说明.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

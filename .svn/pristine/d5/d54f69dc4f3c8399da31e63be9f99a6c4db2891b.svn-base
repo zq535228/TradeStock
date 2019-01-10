@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using DevComponents.DotNetBar.Metro;
+
+namespace org.jiechan.service {
+    public class ColorHelper {
+
+        public static eMetroTileColor geteMetroTileColor(int i) {
+            
+            eMetroTileColor Condition = eMetroTileColor.Orange;
+
+            i = i % 21;
+            if(i != 17) {
+               Condition = (eMetroTileColor)i;
+            }
+
+            return Condition;
+        }
+    }
+}

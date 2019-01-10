@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://x3.renzhe.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://x3.renzhe.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://x3.renzhe.org/">
+      <s:element name="ValidateMysql">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="modelstr" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateMysqlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateMysqlResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginOutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Doit">
+        <s:complexType />
+      </s:element>
+      <s:element name="DoitResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidateMysqlSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateMysql" />
+  </wsdl:message>
+  <wsdl:message name="ValidateMysqlSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateMysqlResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginOutSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginOut" />
+  </wsdl:message>
+  <wsdl:message name="LoginOutSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoitSoapIn">
+    <wsdl:part name="parameters" element="tns:Doit" />
+  </wsdl:message>
+  <wsdl:message name="DoitSoapOut">
+    <wsdl:part name="parameters" element="tns:DoitResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MemberSoap">
+    <wsdl:operation name="ValidateMysql">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">验证用户，返回加密的用户包String。内有IS_X_PostKing的字段代表是否成功登陆；strMessage字段代表失败原因。</wsdl:documentation>
+      <wsdl:input message="tns:ValidateMysqlSoapIn" />
+      <wsdl:output message="tns:ValidateMysqlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">注销用户</wsdl:documentation>
+      <wsdl:input message="tns:LoginOutSoapIn" />
+      <wsdl:output message="tns:LoginOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Doit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳方法。</wsdl:documentation>
+      <wsdl:input message="tns:DoitSoapIn" />
+      <wsdl:output message="tns:DoitSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MemberSoap" type="tns:MemberSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateMysql">
+      <soap:operation soapAction="http://x3.renzhe.org/ValidateMysql" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginOut">
+      <soap:operation soapAction="http://x3.renzhe.org/LoginOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Doit">
+      <soap:operation soapAction="http://x3.renzhe.org/Doit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MemberSoap12" type="tns:MemberSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateMysql">
+      <soap12:operation soapAction="http://x3.renzhe.org/ValidateMysql" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginOut">
+      <soap12:operation soapAction="http://x3.renzhe.org/LoginOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Doit">
+      <soap12:operation soapAction="http://x3.renzhe.org/Doit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Member">
+    <wsdl:port name="MemberSoap" binding="tns:MemberSoap">
+      <soap:address location="http://x4.renzhe.org/Member.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MemberSoap12" binding="tns:MemberSoap12">
+      <soap12:address location="http://x4.renzhe.org/Member.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

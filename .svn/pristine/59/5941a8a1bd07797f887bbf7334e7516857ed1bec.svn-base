@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+<AutoUpdater>
+  <description>忍者X4更新记录
+    2014年10月11日，忍者X4发布beta版本，仅供测试。</description>
+  <Updater>
+    <Url>http://update.renzhe.org/pub_x4/</Url>
+  </Updater>
+  <Application>
+    <EntryPoint>org.renzhe.plat.main.exe</EntryPoint>
+  </Application>
+  <Files>
+  </Files>
+</AutoUpdater>

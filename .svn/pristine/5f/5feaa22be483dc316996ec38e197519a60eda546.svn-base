@@ -1,0 +1,455 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Text;
+using System.Collections;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
+using Mozilla.NUniversalCharDet;
+
+namespace org.jiechan.service {
+    public class FilesHelper {
+
+        public FilesHelper() {
+        }
+
+        public static string Read_File(FileInfo file) {
+            string tmp_result = "";
+            Stream mystream = file.OpenRead();
+            MemoryStream msTemp = new MemoryStream();
+            int len = 0;
+            byte[] buff = new byte[512];
+
+            while ((len = mystream.Read(buff, 0, 512)) > 0) {
+                msTemp.Write(buff, 0, len);
+            }
+
+            if (msTemp.Length > 0) {
+                msTemp.Seek(0, SeekOrigin.Begin);
+                byte[] PageBytes = new byte[msTemp.Length];
+                msTemp.Read(PageBytes, 0, PageBytes.Length);
+
+                msTemp.Seek(0, SeekOrigin.Begin);
+                int DetLen = 0;
+                byte[] DetectBuff = new byte[4096];
+                UniversalDetector Det = new UniversalDetector(null);
+                while ((DetLen = msTemp.Read(DetectBuff, 0, DetectBuff.Length)) > 0 && !Det.IsDone()) {
+                    Det.HandleData(DetectBuff, 0, DetectBuff.Length);
+                }
+                Det.DataEnd();
+                if (Det.GetDetectedCharset() != null) {
+                    tmp_result = System.Text.Encoding.GetEncoding(Det.GetDetectedCharset()).GetString(PageBytes);
+                } else {
+                    EchoHelper.Echo("编码识别失败，请手工转码为UTF8保存到任务文件夹。文件：" + file.Name.ToLower(), "编码识别", EchoHelper.EchoType.绿色信息);
+                }
+            }
+            msTemp.Close();
+            mystream.Close();
+            return tmp_result;
+        }
+
+
+        public static byte[] FileToByte(string fileName) {
+            FileStream pFileStream = null;
+            byte[] pReadByte = new byte[0];
+            try {
+                pFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader r = new BinaryReader(pFileStream);
+                r.BaseStream.Seek(0, SeekOrigin.Begin);    //将文件指针设置到文件开
+                pReadByte = r.ReadBytes((int)r.BaseStream.Length);
+                return pReadByte;
+            } catch {
+                return pReadByte;
+            } finally {
+                if (pFileStream != null)
+                    pFileStream.Close();
+            }
+
+        }
+
+        //写byte[]到fileName
+        public static bool ByteToFile(byte[] pReadByte, string fileName) {
+            FileStream pFileStream = null;
+            try {
+                pFileStream = new FileStream(fileName, FileMode.OpenOrCreate);
+                pFileStream.Write(pReadByte, 0, pReadByte.Length);
+            } catch {
+                return false;
+            } finally {
+                if (pFileStream != null)
+                    pFileStream.Close();
+            }
+            return true;
+        }
+
+
+        #region 文件写入读取等
+
+        public static bool Write(string path, byte[] bt) {
+            try {
+                new FileInfo(path).Directory.Create();
+                FileStream file = new FileStream(path, System.IO.FileMode.Create);
+                file.Write(bt, 0, bt.Length);
+                file.Flush();
+                file.Close();
+                GC.Collect();
+
+            } catch (Exception ex) {
+                EchoHelper.EchoException(ex);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool Write_File(string path, string neirong) {
+            return Write_File(path, neirong, Encoding.UTF8); ;
+        }
+
+        public static bool Write_File(string path, string neirong, Encoding encode) {
+            try {
+                new FileInfo(path).Directory.Create();
+                FileStream file = new FileStream(path, System.IO.FileMode.Create);
+                byte[] bt = encode.GetBytes(neirong);
+                file.Write(bt, 0, bt.Length);
+                file.Flush();
+                file.Close();
+                GC.Collect();
+            } catch (Exception ex) {
+                EchoHelper.Echo(ex.Message, "文件写入失败", EchoHelper.EchoType.淡蓝信息);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// 把文件内容写入到物理位置
+        /// </summary>
+        /// <param name="as_filename"></param>
+        /// <param name="a_FileData"></param>
+        /// <returns></returns>
+        public static string WriteFile(string as_filename, string as_FileData, Encoding encode) {
+            return Write_File(as_filename, as_FileData).ToString();
+        }
+
+        public static string ReadFile(string as_filename, Encoding encode) {
+            return Read_File(as_filename);
+        }
+
+        public static string Read_File(string path) {
+            string str = "";
+            try {
+                FileStream file = new FileStream(path, FileMode.Open);
+                byte[] bt = new byte[file.Length];
+                file.Read(bt, 0, bt.Length);
+                str = Encoding.UTF8.GetString(bt);
+                file.Close();
+            } catch {
+                return "";
+            }
+            GC.Collect();
+            return str;
+        }
+
+        public static string Read_File(string path, Encoding encode) {
+            string str = "";
+            try {
+                FileStream file = new FileStream(path, FileMode.Open);
+                byte[] bt = new byte[file.Length];
+                file.Read(bt, 0, bt.Length);
+                str = encode.GetString(bt);
+                file.Close();
+            } catch {
+                return "";
+            }
+            GC.Collect();
+            return str;
+        }
+
+        public static void DeleteFile(string path) {
+            try {
+                File.Delete(path); //删除文件
+            } catch (System.Exception ex) {
+                EchoHelper.EchoException(ex);
+            }
+        }
+
+        #endregion
+
+        #region 文件夹相关操作
+        public static ArrayList ReadDirectoryList(string path) {
+            ArrayList al = new ArrayList();
+            //所有子文件
+            try {
+                foreach (string item in Directory.GetDirectories(path)) {
+                    al.Add(item);
+                }
+            } catch {
+            }
+
+            return al;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="ext">.dll,.exe等。</param>
+        /// <returns></returns>
+        public static IList<FileInfo> ReadDirectoryList(string path, string ext) {
+            if (!Directory.Exists(path)) {
+                FilesHelper.CreateDirectory(path);
+            }
+
+            IList<FileInfo> al = new List<FileInfo>();
+            //所有子文件
+            try {
+                foreach (string item in Directory.GetFiles(path)) {
+                    FileInfo fileinfo = new FileInfo(item);
+                    if (ext.ToLower().Contains(fileinfo.Extension.ToLower())) {
+                        al.Add(fileinfo);
+                    }
+                }
+            } catch {
+            }
+
+            return al;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="ext">.dll,.exe等。</param>
+        /// 
+        /// <returns></returns>
+        public static IList<FileInfo> ReadDirectoryList(string path, string ext, string content) {
+            X_Waiting wait = new X_Waiting();
+            if (!Directory.Exists(path)) {
+                FilesHelper.CreateDirectory(path);
+            }
+
+            IList<FileInfo> al = new List<FileInfo>();
+            //所有子文件
+            try {
+                foreach (string item in Directory.GetFiles(path)) {
+                    FileInfo fileinfo = new FileInfo(item);
+
+                    if (ext.ToLower().Contains(fileinfo.Extension.ToLower()) && fileinfo.FullName.Contains(content)) {
+                        if (ext.Contains(".ct") || ext.Contains("dll")) {
+                            wait.ShowMsg(fileinfo.Name);
+                        }
+                        al.Add(fileinfo);
+                    }
+                }
+            } catch {
+            } finally {
+                wait.CloseMsg();
+            }
+
+            return al;
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="ext">.dll,.exe等</param>
+        /// <returns></returns>
+        public static int ReadDirectoryListCount(string path, string ext) {
+            if (!ext.Contains("*")) {
+                ext = "*" + ext;
+            }
+            int re = 0;
+            if (!Directory.Exists(path)) {
+                FilesHelper.CreateDirectory(path);
+            }
+            //所有子文件
+            try {
+                re = Directory.GetFiles(path, ext).Length;
+            } catch {
+            }
+            return re;
+        }
+
+        public static void CreateDirectory(string path) {
+            try {
+                if (!Directory.Exists(path)) {
+                    Directory.CreateDirectory(path);
+                }
+            } catch {
+            }
+        }
+
+        public static bool DirectoryExist(string path) {
+            return Directory.Exists(path);
+        }
+
+        public static bool FileExist(string path) {
+            return File.Exists(path);
+        }
+
+
+        public static ArrayList ReadDirectory(string path) {
+            if (!Directory.Exists(path)) {
+                FilesHelper.CreateDirectory(path);
+            }
+            ArrayList al = new ArrayList();
+            //所有子文件
+            try {
+                foreach (string item in Directory.GetFiles(path)) {
+                    FileInfo fileinfo = new FileInfo(item);
+                    al.Add(fileinfo);
+                }
+            } catch {
+            }
+
+            return al;
+        }
+
+        /// <summary>
+        /// 读取目录中的所有扩展名文件。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="ext">.html|.txt|.exe</param>
+        /// <returns></returns>
+        public static ArrayList ReadDirectory(string path, string ext) {
+            if (!Directory.Exists(path)) {
+                FilesHelper.CreateDirectory(path);
+            }
+
+            ArrayList al = new ArrayList();
+            //所有子文件
+            try {
+                foreach (string item in Directory.GetFiles(path)) {
+                    FileInfo fileinfo = new FileInfo(item);
+                    if (ext.ToLower().Contains(fileinfo.Extension.ToLower())) {
+                        al.Add(fileinfo);
+                    }
+                }
+            } catch {
+            }
+
+            return al;
+        }
+
+        /// <summary>
+        /// 删除目录里的文件，并删除这个目录。
+        /// </summary>
+        /// <param name="dirPath"></param>
+        public static void DeleteInDir(string dirPath) {
+            if (dirPath.Trim() == "" || !Directory.Exists(dirPath))
+                return;
+            DirectoryInfo dirInfo = new DirectoryInfo(dirPath);
+
+            try {
+                FileInfo[] fileInfos = dirInfo.GetFiles();
+                if (fileInfos != null && fileInfos.Length > 0) {
+                    foreach (FileInfo fileInfo in fileInfos) {
+                        File.Delete(fileInfo.FullName); //删除文件
+                    }
+                }
+
+                DirectoryInfo[] dirInfos = dirInfo.GetDirectories();
+                if (dirInfos != null && dirInfos.Length > 0) {
+                    foreach (DirectoryInfo childDirInfo in dirInfos) {
+                        DeleteInDir(childDirInfo.FullName); //递归
+                    }
+                }
+            } catch {
+
+            }
+            Directory.Delete(dirInfo.FullName, true); //删除目录
+        }
+
+        /// <summary>
+        /// 删除目录里的文件，并删除这个目录。
+        /// </summary>
+        /// <param name="dirPath"></param>
+        public static void DeleteInDir(string dirPath, string ext) {
+            if (dirPath.Trim() == "" || !Directory.Exists(dirPath))
+                return;
+            DirectoryInfo dirInfo = new DirectoryInfo(dirPath);
+
+            FileInfo[] fileInfos = dirInfo.GetFiles();
+            if (fileInfos != null && fileInfos.Length > 0) {
+                foreach (FileInfo fileInfo in fileInfos) {
+                    if (fileInfo.Name.Contains(ext)) {
+                        File.Delete(fileInfo.FullName);
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Copy文件夹
+        /// </summary>
+        /// <param name="sPath">源文件夹路径</param>
+        /// <param name="dPath">目的文件夹路径</param>
+        /// <returns>完成状态：success-完成；其他-报错</returns>
+        public static void CopyFolder(string sPath, string dPath) {
+            try {
+                // 创建目的文件夹
+                if (!Directory.Exists(dPath)) {
+                    Directory.CreateDirectory(dPath);
+                }
+
+                // 拷贝文件
+                DirectoryInfo sDir = new DirectoryInfo(sPath);
+                FileInfo[] fileArray = sDir.GetFiles();
+                foreach (FileInfo file in fileArray) {
+                    file.CopyTo(dPath + "\\" + file.Name, true);
+                }
+
+                // 循环子文件夹
+                DirectoryInfo dDir = new DirectoryInfo(dPath);
+                DirectoryInfo[] subDirArray = sDir.GetDirectories();
+                foreach (DirectoryInfo subDir in subDirArray) {
+                    CopyFolder(subDir.FullName, dPath + "//" + subDir.Name);
+                }
+            } catch (Exception ex) {
+                EchoHelper.EchoException(ex);
+            }
+        }
+
+
+        #endregion
+
+        #region 加密数据
+        private static byte[] Encryption(string key, byte[] data) {
+            try {
+                DESCryptoServiceProvider descsp = new DESCryptoServiceProvider();   //实例化加解密类对象
+                byte[] KEY = Encoding.Unicode.GetBytes(key);                        //定义字节数组，用来存储密钥
+                MemoryStream MStream = new MemoryStream();                          //实例化内存流对象
+                //使用内存流实例化加密流对象 
+                CryptoStream CStream = new CryptoStream(MStream, descsp.CreateEncryptor(KEY, KEY), CryptoStreamMode.Write);
+                CStream.Write(data, 0, data.Length);                                //向加密流中写入数据
+                CStream.FlushFinalBlock();                                          //释放加密流
+                return MStream.ToArray();                                           //返回加密后的数组
+            } catch {
+                return null;
+            }
+        }
+        #endregion
+
+        #region 解密数据
+        private static byte[] Decryption(string key, byte[] data) {
+            try {
+                DESCryptoServiceProvider descsp = new DESCryptoServiceProvider();   //实例化加解密类对象
+                byte[] KEY = Encoding.Unicode.GetBytes(key);                        //定义字节数组，用来存储密钥
+                MemoryStream MStream = new MemoryStream();                          //实例化内存流对象
+                //使用内存流实例化加密流对象 
+                CryptoStream CStream = new CryptoStream(MStream, descsp.CreateDecryptor(KEY, KEY), CryptoStreamMode.Write);
+                CStream.Write(data, 0, data.Length);                                //向加密流中写入数据
+                CStream.FlushFinalBlock();                                          //释放加密流
+                return MStream.ToArray();                                           //返回加密后的数组
+            } catch {
+                return null;
+            }
+        }
+        #endregion
+
+    }
+}

@@ -1,0 +1,9 @@
+D:\股票自动交易\org.jiechan.update\obj\Debug\org.jiechan.update.FrmUpdate.resources
+D:\股票自动交易\org.jiechan.update\obj\Debug\org.jiechan.update.Properties.Resources.resources
+D:\股票自动交易\org.jiechan.update\obj\Debug\org.jiechan.update.csproj.GenerateResource.Cache
+D:\股票自动交易\org.jiechan.update\obj\Debug\org.jiechan.update.csprojResolveAssemblyReference.cache
+D:\股票自动交易\debug\org.jiechan.update.dll.config
+D:\股票自动交易\debug\org.jiechan.update.dll
+D:\股票自动交易\debug\org.jiechan.update.pdb
+D:\股票自动交易\org.jiechan.update\obj\Debug\org.jiechan.update.dll
+D:\股票自动交易\org.jiechan.update\obj\Debug\org.jiechan.update.pdb

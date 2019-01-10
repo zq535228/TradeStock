@@ -1,0 +1,356 @@
+﻿#define OVER
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using System.Threading;
+using System.Runtime.InteropServices;
+using org.jiechan.service;
+using System.IO;
+using System.Text;
+using System.Security.Principal;
+using System.Net;
+using IWshRuntimeLibrary;
+using System.Xml;
+using org.jiechan.main.core;
+
+namespace org.jiechan.main {
+    static class Program {
+
+
+        #region Windows Api加载
+        /// <summary>
+        /// 查找窗体句柄
+        /// </summary>
+        /// <param name="lpClassName"></param>
+        /// <param name="lpWindowName"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        extern static IntPtr FindWindow(string lpClassName, string lpWindowName);
+        /// <summary>
+        /// 查找菜单句柄
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="bRevert"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", EntryPoint = "GetSystemMenu")]
+        extern static IntPtr GetSystemMenu(IntPtr hWnd, IntPtr bRevert);
+        /// <summary>
+        /// 移除某个菜单
+        /// </summary>
+        /// <param name="hMenu"></param>
+        /// <param name="uPosition"></param>
+        /// <param name="uFlags"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", EntryPoint = "RemoveMenu")]
+        extern static IntPtr RemoveMenu(IntPtr hMenu, uint uPosition, uint uFlags);
+        #endregion
+
+        #region 封装的一些静态方法
+
+        #region 灰掉控制台上面的X
+        /// <summary>
+        /// 灰掉控制台上面的X
+        /// </summary>
+        static void DisClose() {
+            IntPtr windowHandle = FindWindow(null, Console.Title);
+            IntPtr closeMenu = GetSystemMenu(windowHandle, IntPtr.Zero);
+            uint SC_CLOSE = 0xF060;
+            RemoveMenu(closeMenu, SC_CLOSE, 0x0);
+        }
+        #endregion
+
+        private static void DeleteAndBuildShortCut() {
+            try {
+                FileInfo fi = new FileInfo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\忍者X4.lnk");
+                if (fi.Exists) {
+                    fi.Delete();
+                    //EchoHelper.Echo("桌面【忍者X4】的快捷方式已失效，已重新创建..." , "图标失效" , EchoHelper.EchoType.错误信息);
+                }
+                BuildX3ShortCut();
+
+#if !OVER
+                FilesHelper.DeleteInDir(PathHelper.TempPath);
+                FilesHelper.DeleteFile(PathHelper.ConfigPath + "\\themes.VDB");
+                FilesHelper.DeleteFile(PathHelper.ConfigPath + "\\tools.VDB");
+                FilesHelper.DeleteFile(PathHelper.ConfigPath + "\\plugins.VDB");
+
+#endif
+
+            } catch {
+            }
+        }
+
+        /// <summary>
+        /// 配置初始化各个控件的属性。
+        /// </summary>
+        private static void BuildConfig() {
+            //             FileInfo fi;
+            // 
+            //             string taskTaskWYC = PathHelper.ConfigPath + "\\taskTaskWYC.VDB";
+            //             fi = new FileInfo(taskTaskWYC);
+            //             if (!fi.Exists) {
+            //                 //FilesHelper.Write(taskTaskWYC, Res.taskTaskWYC);
+            //             }
+
+
+        }
+
+        /// <summary>
+        /// 创建桌面快捷方式。
+        /// </summary>
+        private static void BuildX3ShortCut() {
+            //实例化WshShell对象 
+            WshShell shell = new WshShell();
+            string shortpath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "//忍者交易助手.lnk";
+            //通过该对象的 CreateShortcut 方法来创建 IWshShortcut 接口的实例对象 
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortpath);
+
+            //设置快捷方式的目标所在的位置(源程序完整路径) 
+            shortcut.TargetPath = PathHelper.StartupPath + "\\org.jiechan.main.exe";
+
+            //应用程序的工作目录 
+            //当用户没有指定一个具体的目录时，快捷方式的目标应用程序将使用该属性所指定的目录来装载或保存文件。 
+            shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
+
+            //目标应用程序窗口类型(1.Normal window普通窗口,3.Maximized最大化窗口,7.Minimized最小化) 
+            shortcut.WindowStyle = 1;
+
+            //快捷方式的描述 
+            shortcut.Description = "忍者股票自动交易助手";
+
+            //可以自定义快捷方式图标.(如果不设置,则将默认源文件图标.) 
+            //shortcut.IconLocation = System.Environment.SystemDirectory + "\\" + "shell32.dll, 165"; 
+
+            //设置应用程序的启动参数(如果应用程序支持的话) 
+            //shortcut.Arguments = "/myword /d4s"; 
+
+            //设置快捷键(如果有必要的话.) 
+            //shortcut.Hotkey = "CTRL+ALT+D"; 
+
+            //保存快捷方式 
+
+            shortcut.Save();
+
+
+        }
+
+        /// <summary>
+        /// 判断程序是否是以管理员身份运行。
+        /// </summary>
+        public static bool IsRunAsAdmin() {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        /// <summary>
+        /// 下载更新文件到临时目录
+        /// </summary>
+        /// <returns></returns>
+        private static void DownAutoUpdateFile() {
+
+            string updatelist = PathHelper.StartupPath + "\\UpdateList.xml";
+            FileInfo fi = new FileInfo(updatelist);
+            if (!fi.Exists) {
+                FilesHelper.Write_File(updatelist, res.UpdateList, Encoding.Default);
+            }
+
+
+            string serverUpdateFile = Application.StartupPath + "\\org.jiechan.update.exe";
+            fi = new FileInfo(serverUpdateFile);
+
+            FileInfo fi_main = new FileInfo(Application.StartupPath + "\\org.jiechan.main.exe");
+
+            if (!fi.Exists || fi.LastWriteTime < fi_main.LastWriteTime) {
+                try {
+                    string purl = "http://update.renzhe.org/pub_x4/org.renzhe.plat.update.exe";
+                    WebRequest req = WebRequest.Create(purl);
+                    WebResponse res = req.GetResponse();
+                    if (res.ContentLength > 0) {
+                        try {
+                            WebClient wClient = new WebClient();
+                            wClient.DownloadFile(purl, serverUpdateFile);
+                        } catch {
+                            return;
+                        }
+                    }
+                } catch {
+                    return;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 删除没有引用的Dll
+        /// </summary>
+        private static void CleanDll() {
+            if (System.IO.File.Exists(PathHelper.ConfigPath + "\\Setup.ini")) {
+                int pnum = INIHelper.GetInt32("插件总数", "数量");
+                int tcount = FilesHelper.ReadDirectoryListCount(Application.StartupPath, ".dll");
+
+                string path = PathHelper.StartupPath + "\\UpdateList.xml";
+
+                if (path.Contains("F:\\x4\\")) {
+                    return;
+                }
+
+                XmlNodeList newNodeList = new XmlFiles(path).GetNodeList("AutoUpdater/Files");
+
+                string tmpcontent = FilesHelper.Read_File(path);
+
+                IList<FileInfo> files = FilesHelper.ReadDirectoryList(Application.StartupPath, ".dll");
+
+                if (files.Count < newNodeList.Count + 10) {
+                    for (int i = 0; i < files.Count; i++) {
+                        if (!tmpcontent.Contains(files[i].Name)) {
+                            files[i].Delete();
+                        }
+                    }
+                }
+                INIHelper.Set("插件总数", "数量", tcount.ToString());
+            }
+
+
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 执行函数
+        /// </summary>
+        /// <param name="args">参数</param>
+        /// 
+        [STAThread]
+        static void Main(string[] args) {
+            taskmanage.GetInstance().run();
+
+
+            taskmanage.GetInstance().putlist();
+            taskmanage.GetInstance().add();
+            Thread.Sleep(2000);
+            taskmanage.GetInstance().add();
+            taskmanage.GetInstance().putlist();
+
+
+            Thread.Sleep(50000);
+            return;
+
+
+//             IntPtr[] ps = comm.EnumTradeWindows();
+// 
+// 
+//             bool lo = comm.IsTradeLogined();
+// 
+//             if (lo == true) {
+// 
+//                 comm.getStatus();
+// 
+//             }
+// 
+//             return;
+
+
+
+            int clientWidth = Screen.PrimaryScreen.Bounds.Width;
+            if (clientWidth > 1000) {
+                Console.SetWindowSize(120, 44 / 2);
+            } else {
+                EchoHelper.Echo("推荐使用的分辨率是：1024*800以上", null, EchoHelper.EchoType.淡蓝信息);
+            }
+
+            //Qin添加的 只开一个实例
+            bool Exist = false;
+
+            System.Diagnostics.Process CIP = System.Diagnostics.Process.GetCurrentProcess();
+            System.Diagnostics.Process[] CIPR = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process p in CIPR) {
+                if (p.ProcessName == CIP.ProcessName && p.Id != CIP.Id) {
+                    Exist = true;
+                }
+            }
+
+            if (Exist == false) {
+                //不允许多开，请关闭多余的程序。
+            }
+
+            DisClose();
+            //设置标题
+            Console.Title = "忍者股票交易助手 ，運行狀態監控中..."; //设置控制台窗口的标题 
+            //初始化内容
+            Console.ForegroundColor = ConsoleColor.Magenta;
+
+            #region 待更新的，美丽的CMD字体效果。
+            Console.WriteLine("");
+            Console.WriteLine("      ┏━┓　　　　　　┏━┓┏┓　　　　　　　　　　　　　　　   ┏┳━┓┏━┓");
+            Console.WriteLine("      ┃┃┃┏━┓┏━┓┣━┃┃┗┓┏━┓　　┏━┓┏┳┓┏━┓   ┃　┏┛┗┓┃");
+            Console.WriteLine("      ┃　┫┃┻┫┃┃┃┃━┫┃┃┃┃┻┫┏┓┃┃┃┃┏┛┃┃┃   ┃　┗┓　┃┃");
+            Console.WriteLine("      ┗┻┛┗━┛┗┻┛┗━┛┗┻┛┗━┛┗┛┗━┛┗┛　┣┓┃   ┗┻━┛　┗┛");
+            Console.WriteLine("      　　　　　　　　　　　　　　　　　　    　　　　　　┗━┛   　　　　　　  ");
+
+
+
+            #endregion
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("                            --忍者股票交易助手官方論曇：www.RenZhe.org");
+            Console.WriteLine("");
+
+            EchoHelper.EchoStart("引擎開始啓動中...");
+            EchoHelper.Echo("忍者股票交易助手 控制台初始化完畢！", null, EchoHelper.EchoType.淡蓝信息);
+
+            EchoHelper.Echo("萬螚的【忍者股票交易助手】即将出现，让我们一起倒計時...，1份鈡，2份鈡，3份鈡！:(", null, EchoHelper.EchoType.淡蓝信息);
+
+            //初始化窗体
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            //检查是否具有可写入的权限
+            if (!IsRunAsAdmin()) {
+                EchoHelper.Echo("此系统中，忍者股票交易助手写入权限不足，请以管理员的身份运行！", "系统权限不足", EchoHelper.EchoType.异常信息);
+                Thread.Sleep(20000);
+                CIP.Kill();
+                Application.ExitThread();
+                Application.Exit();
+                return;
+            }
+
+
+            DeleteAndBuildShortCut();
+#if !DEBUG
+            BuildConfig();
+            DownAutoUpdateFile();
+            CleanDll();
+
+            j_login Login = new j_login();
+            //初始化登陆
+
+            DialogResult dr = Login.ShowDialog();
+
+            if (dr == DialogResult.OK) {
+                Login.Dispose();//释放
+                Login.Close();
+
+                Application.Run(new j_main());//运行主界面
+
+                EchoHelper.Echo("媬侟信息中...", null, 0);
+                Thread.Sleep(500);
+                EchoHelper.Echo("保存成糼！...系統退出...", null, EchoHelper.EchoType.普通信息);
+            } else {
+                EchoHelper.Echo("登陆未完成...关闭窗体！", null, EchoHelper.EchoType.普通信息);
+            }
+#else
+            Application.Run(new j_main());//运行主界面
+#endif
+
+
+
+            Thread.Sleep(500);
+            CIP.Kill();
+            Application.ExitThread();
+            Application.Exit();
+        }
+
+    }
+}

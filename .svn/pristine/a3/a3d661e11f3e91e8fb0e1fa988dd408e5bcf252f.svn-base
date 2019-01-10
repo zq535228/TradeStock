@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{446989F0-9599-4714-8202-1827C7AE076A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>org.jiechan.service</RootNamespace>
+    <AssemblyName>org.jiechan.service</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\build\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.3.2.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\org.renzhe.dlls\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=10.5.0.3, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\org.renzhe.dlls\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.MSScriptControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\org.jiechan.dlls\Interop.MSScriptControl.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\org.jiechan.dlls\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\org.jiechan.dlls\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="STSdb4">
+      <HintPath>..\org.jiechan.dlls\STSdb4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Winista.HtmlParser, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\org.jiechan.dlls\Winista.HtmlParser.dll</HintPath>
+    </Reference>
+    <Reference Include="zoyobar.shared.panzer.IEBrowser">
+      <HintPath>..\org.jiechan.dlls\zoyobar.shared.panzer.IEBrowser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrayHelper.cs" />
+    <Compile Include="Balloon\BalloonHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Balloon\BalloonHelp.Designer.cs">
+      <DependentUpon>BalloonHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Balloon\BalloonWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Balloon\BalloonWindow.Designer.cs">
+      <DependentUpon>BalloonWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Balloon\FMSBalloonTip.cs" />
+    <Compile Include="Balloon\FMSEditTip.cs" />
+    <Compile Include="Balloon\FMSMessageTip.cs" />
+    <Compile Include="Balloon\HitTestCodes.cs" />
+    <Compile Include="Balloon\Hooks\BaseHook.cs" />
+    <Compile Include="Balloon\Hooks\CallWndProcHook.cs" />
+    <Compile Include="Balloon\Hooks\CallWndProcRetHook.cs" />
+    <Compile Include="Balloon\Hooks\KeyBoardHook.cs" />
+    <Compile Include="Balloon\Hooks\MouseHook.cs" />
+    <Compile Include="Balloon\Hooks\WindowsHook.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorHelper.cs" />
+    <Compile Include="IUdpTx.cs" />
+    <Compile Include="ListViewHelper.cs" />
+    <Compile Include="StpHelper.cs" />
+    <Compile Include="X_TextBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="X_TextBox.designer.cs">
+      <DependentUpon>X_TextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EvalHelper.cs" />
+    <Compile Include="FastVerCode.cs" />
+    <Compile Include="FetchContent.cs" />
+    <Compile Include="IPHelper.cs" />
+    <Compile Include="ListViewNF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PathHelper.cs" />
+    <Compile Include="PinYinConverter.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="DbMysql.cs" />
+    <Compile Include="DbTools.cs" />
+    <Compile Include="EchoHelper.cs" />
+    <Compile Include="FilesHelper.cs" />
+    <Compile Include="HardWare.cs" />
+    <Compile Include="INIHelper.cs" />
+    <Compile Include="InvokeHelper.cs" />
+    <Compile Include="ISplashForm.cs" />
+    <Compile Include="MD5Helper.cs" />
+    <Compile Include="ScriptRun.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SeoHelper.cs" />
+    <Compile Include="SiteInfoBuild.cs" />
+    <Compile Include="ThreadMulti.cs" />
+    <Compile Include="TimeHelper.cs" />
+    <Compile Include="ValidateHelper.cs" />
+    <Compile Include="Web References\cn.org.renzhe.u.member\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\cn.org.renzhe.u.shopx3\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Webb.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServHelper.cs" />
+    <Compile Include="XmlFiles.cs" />
+    <Compile Include="baseform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="baseform.Designer.cs">
+      <DependentUpon>baseform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="NUniversalCharDet\ByteBuffer.cs" />
+    <Compile Include="NUniversalCharDet\Constants.cs" />
+    <Compile Include="NUniversalCharDet\ICharsetListener.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Big5Prober.cs" />
+    <Compile Include="NUniversalCharDet\Prober\CharsetProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\ContextAnalysis\EUCJPContextAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\ContextAnalysis\JapaneseContextAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\ContextAnalysis\SJISContextAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\Big5DistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\CharDistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\EUCJPDistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\EUCKRDistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\EUCTWDistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\GB2312DistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\JISDistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\DistributionAnalysis\SJISDistributionAnalysis.cs" />
+    <Compile Include="NUniversalCharDet\Prober\EscCharsetProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\EUCJPProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\EUCKRProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\EUCTWProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\GB18030Prober.cs" />
+    <Compile Include="NUniversalCharDet\Prober\HebrewProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Latin1Prober.cs" />
+    <Compile Include="NUniversalCharDet\Prober\MBCSGroupProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\SBCSGroupProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\BulgarianModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\CyrillicModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\GreekModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\HebrewModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Ibm855Model.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Ibm866Model.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Koi8rModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Latin5BulgarianModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Latin5Model .cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Latin7Model.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\MacCyrillicModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\SequenceModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Win1251BulgarianModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Win1251Model.cs" />
+    <Compile Include="NUniversalCharDet\Prober\Sequence\Win1253Model.cs" />
+    <Compile Include="NUniversalCharDet\Prober\SingleByteCharsetProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\SJISProber.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\Big5SMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\CodingStateMachine.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\EUCJPSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\EUCKRSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\EUCTWSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\GB18030SMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\HZSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\ISO2022CNSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\ISO2022JPSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\ISO2022KRSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\PkgInt.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\SJISSMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\SMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\UCS2BESMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\StateMachine\UTF8SMModel.cs" />
+    <Compile Include="NUniversalCharDet\Prober\UTF8Prober.cs" />
+    <Compile Include="NUniversalCharDet\UniversalDetector.cs" />
+    <Compile Include="ProcessHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="RegexHelper.cs" />
+    <Compile Include="RzHttp.cs" />
+    <Compile Include="Splasher.cs" />
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="RzCookies.cs" />
+    <Compile Include="X_ListView.cs" />
+    <Compile Include="X_Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="X_Splash.designer.cs">
+      <DependentUpon>X_Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="X_Waiting.cs" />
+    <Compile Include="ZipHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Balloon\BalloonHelp.resx">
+      <DependentUpon>BalloonHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Balloon\BalloonWindow.resx">
+      <DependentUpon>BalloonWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Balloon\Hooks\WindowsHook.resx">
+      <DependentUpon>WindowsHook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="X_TextBox.resx">
+      <DependentUpon>X_TextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="baseform.resx">
+      <DependentUpon>baseform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="X_Splash.resx">
+      <DependentUpon>X_Splash.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\cn.org.renzhe.u.member\Member.wsdl" />
+    <None Include="Web References\cn.org.renzhe.u.member\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\cn.org.renzhe.u.shopx3\ModelPick1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\cn.org.renzhe.u.shopx3\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\cn.org.renzhe.u.shopx3\shopx3.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\cn.org.renzhe.u.member\Member.disco" />
+    <None Include="Web References\cn.org.renzhe.u.shopx3\shopx3.disco" />
+    <None Include="Resources\ajax-loader.gif" />
+    <Content Include="Resources\question.png" />
+    <Content Include="Resources\X_Form_Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://x4.renzhe.org/Member.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\cn.org.renzhe.u.member\</RelPath>
+      <UpdateFromURL>http://x4.renzhe.org/Member.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>org_renzhe_plat_service_cn_org_renzhe_u_member_Member</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://x4.renzhe.org/shopx3.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\cn.org.renzhe.u.shopx3\</RelPath>
+      <UpdateFromURL>http://x4.renzhe.org/shopx3.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>org_renzhe_plat_service_cn_org_renzhe_u_shopx3_ShopX3</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\org.jiechan.stp\SmartThreadPool.csproj">
+      <Project>{74D4C33F-7CC8-4B2A-A7DF-D8B6E63B6EBD}</Project>
+      <Name>SmartThreadPool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Reactor_Enabled="0" Reactor_Commands="" Reactor_Project="" Reactor_Configuration="" Reactor_Output="" Reactor_Deploy="0" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

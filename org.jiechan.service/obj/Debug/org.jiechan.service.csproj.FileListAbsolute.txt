@@ -1,0 +1,14 @@
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.csprojResolveAssemblyReference.cache
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.Balloon.BalloonHelp.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.Balloon.BalloonWindow.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.Balloon.Hooks.WindowsHook.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.X_TextBox.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.baseform.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.Properties.Resources.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.SplashScreen.X_Splash.resources
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.csproj.GenerateResource.Cache
+D:\股票自动交易\debug\org.jiechan.service.dll.config
+D:\股票自动交易\debug\org.jiechan.service.dll
+D:\股票自动交易\debug\org.jiechan.service.pdb
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.dll
+D:\股票自动交易\org.jiechan.service\obj\Debug\org.jiechan.service.pdb

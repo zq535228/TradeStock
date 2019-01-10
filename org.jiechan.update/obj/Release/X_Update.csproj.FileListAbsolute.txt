@@ -1,0 +1,13 @@
+F:\Renzhe\X_PostKing\EXEs\X_Update.exe.manifest
+F:\Renzhe\X_PostKing\EXEs\X_Update.application
+F:\Renzhe\X_PostKing\EXEs\X_Update.exe
+F:\Renzhe\X_PostKing\EXEs\X_Update.pdb
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.FrmUpdate.resources
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.Properties.Resources.resources
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.TrustInfo.xml
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.exe.manifest
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.application
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.exe
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.pdb
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.csprojResolveAssemblyReference.cache
+F:\Renzhe\SoftUpdate\obj\Release\X_Update.csproj.GenerateResource.Cache

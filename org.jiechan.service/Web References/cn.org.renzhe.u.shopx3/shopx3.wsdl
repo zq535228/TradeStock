@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://x4.renzhe.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://x4.renzhe.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://x4.renzhe.org/">
+      <s:element name="GetAllPickModules">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllPickModulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllPickModulesResult" type="tns:ArrayOfModelPick" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfModelPick">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ModelPick" nillable="true" type="tns:ModelPick" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ModelPick">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PickName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelPassWord" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelAuthor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelQQ" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPub" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFanZhuaQu" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileSize" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndexUrlStr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsZhizhu" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Urlhas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UrlNotHas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="linCookies" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageIncr" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentConUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IntervalTime" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAutoModelGet" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinLength" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TitleRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title2Regex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentRegexs" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HtmlAlias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagsRegx" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeyWordRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PutTimeReg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComeFromRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComeFromUrlRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClickNumRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArtPassWordRegex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsReply" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsQuote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuartUrls" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Noimg" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="No2br" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAutoNextPage" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="StrReplace" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy01" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy02" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy03" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy04" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy05" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy06" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy07" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy08" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy09" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy10" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy11" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy12" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy13" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy14" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy15" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy16" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy17" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy18" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy19" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zdy20" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndexUrls" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListUrl" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMore" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="string1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string6" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string7" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string8" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string9" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string10" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string11" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string12" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string13" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string14" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string15" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string16" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string17" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string18" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string19" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="string20" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="int1" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int2" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int3" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int4" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int5" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int6" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int7" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int8" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="int9" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime1" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime2" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime3" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime4" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime5" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime6" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime7" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime8" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime9" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UploadClassStr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileClassStr" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mtype" type="tns:mType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="mType">
+        <s:restriction base="s:string">
+          <s:enumeration value="抓取模块" />
+          <s:enumeration value="个人数据" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UploadClassStrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UploadClassStrResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClassStr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mtype" type="tns:mType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClassStrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClassStrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="classMemberObj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mtype" type="tns:mType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="classMemberObj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileNewName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mtype" type="tns:mType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReNameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doit">
+        <s:complexType />
+      </s:element>
+      <s:element name="doitResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllPickModulesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllPickModules" />
+  </wsdl:message>
+  <wsdl:message name="GetAllPickModulesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllPickModulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadClassStrSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadClassStr" />
+  </wsdl:message>
+  <wsdl:message name="UploadClassStrSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadClassStrResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClassStrSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClassStr" />
+  </wsdl:message>
+  <wsdl:message name="GetClassStrSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClassStrResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReNameSoapIn">
+    <wsdl:part name="parameters" element="tns:ReName" />
+  </wsdl:message>
+  <wsdl:message name="ReNameSoapOut">
+    <wsdl:part name="parameters" element="tns:ReNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="doitSoapIn">
+    <wsdl:part name="parameters" element="tns:doit" />
+  </wsdl:message>
+  <wsdl:message name="doitSoapOut">
+    <wsdl:part name="parameters" element="tns:doitResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ShopX3Soap">
+    <wsdl:operation name="GetAllPickModules">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取服务器上所有的发布模块。</wsdl:documentation>
+      <wsdl:input message="tns:GetAllPickModulesSoapIn" />
+      <wsdl:output message="tns:GetAllPickModulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadClassStr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">web提供的方法，上传文件到相应的地址</wsdl:documentation>
+      <wsdl:input message="tns:UploadClassStrSoapIn" />
+      <wsdl:output message="tns:UploadClassStrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassStr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取某个模块</wsdl:documentation>
+      <wsdl:input message="tns:GetClassStrSoapIn" />
+      <wsdl:output message="tns:GetClassStrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除某一个模块，只有Qin具有这个权力。</wsdl:documentation>
+      <wsdl:input message="tns:DeleteSoapIn" />
+      <wsdl:output message="tns:DeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">修改某一个模块的名称，只有Qin具有这个权力。</wsdl:documentation>
+      <wsdl:input message="tns:ReNameSoapIn" />
+      <wsdl:output message="tns:ReNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳方法</wsdl:documentation>
+      <wsdl:input message="tns:doitSoapIn" />
+      <wsdl:output message="tns:doitSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ShopX3Soap" type="tns:ShopX3Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllPickModules">
+      <soap:operation soapAction="http://x4.renzhe.org/GetAllPickModules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadClassStr">
+      <soap:operation soapAction="http://x4.renzhe.org/UploadClassStr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassStr">
+      <soap:operation soapAction="http://x4.renzhe.org/GetClassStr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://x4.renzhe.org/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReName">
+      <soap:operation soapAction="http://x4.renzhe.org/ReName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doit">
+      <soap:operation soapAction="http://x4.renzhe.org/doit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ShopX3Soap12" type="tns:ShopX3Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllPickModules">
+      <soap12:operation soapAction="http://x4.renzhe.org/GetAllPickModules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadClassStr">
+      <soap12:operation soapAction="http://x4.renzhe.org/UploadClassStr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassStr">
+      <soap12:operation soapAction="http://x4.renzhe.org/GetClassStr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://x4.renzhe.org/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReName">
+      <soap12:operation soapAction="http://x4.renzhe.org/ReName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doit">
+      <soap12:operation soapAction="http://x4.renzhe.org/doit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShopX3">
+    <wsdl:port name="ShopX3Soap" binding="tns:ShopX3Soap">
+      <soap:address location="http://x4.renzhe.org/shopx3.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ShopX3Soap12" binding="tns:ShopX3Soap12">
+      <soap12:address location="http://x4.renzhe.org/shopx3.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

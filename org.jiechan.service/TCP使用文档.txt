@@ -1,0 +1,71 @@
+﻿ 
+ 服务端
+
+        private void button1_Click(object sender, EventArgs e) {
+            TcpListenerHelper tlistener = new TcpListenerHelper("115.28.49.203", 5188);
+            tlistener.Start();
+
+            Thread myThread = new Thread(new ParameterizedThreadStart(DoWork));
+            object o = tlistener;
+            myThread.Start(o);
+
+            button1.Text = "ok";
+        }
+
+        public void DoWork(object state) {
+
+            TcpListenerHelper tlistener = (TcpListenerHelper)state;
+            tlistener.Listen();//监听
+
+            while (tlistener.WaitForConnect()) {
+                button1.Text = tlistener.ReadMessage();
+                tlistener.SendMessage("ok,i am reced!"); 
+                
+                tlistener.Listen();//监听
+                
+            }
+        }
+
+
+
+
+客户端
+
+
+
+        private void button1_Click(object sender, EventArgs e) {
+
+            TcpClientHelper client = new TcpClientHelper("115.28.49.203", 5188);
+            client.Start();
+
+            client.SendMessage(textBox1.Text);
+            buttonX1.Text = client.ReadMessage();
+
+			}
+
+
+=======================================================================================
+
+文件接收
+
+            wait.ShowMsg("同步服务器数据开始，请耐心等候！");
+            TcpClientHelper client = new TcpClientHelper("192.168.65.128", 5188);
+            client.Start();
+
+            bool re = client.SendMessage("同步服务器");
+
+            if (re) {
+                wait.ShowMsg("命令已送达！");
+
+
+                re = client.ReceiveFile(PathHelper.ConfigPath + "\\" + MD5Helper.MD5("192.168.65.128", 8) + ".db");
+                if (re) {
+                    wait.ShowMsg("同步服务器数据成功！");
+                } else {
+                    wait.ShowMsg("同步服务器失败！");
+                }
+                client.Stop();
+
+                wait.CloseMsg();
+            }
+
